@@ -3,10 +3,10 @@ package com.my.blog.website.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.my.blog.website.dao.AttachVoMapper;
-import com.my.blog.website.utils.DateKit;
 import com.my.blog.website.modal.Vo.AttachVo;
 import com.my.blog.website.modal.Vo.AttachVoExample;
 import com.my.blog.website.service.IAttachService;
+import com.my.blog.website.utils.DateKit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class AttachServiceImpl implements IAttachService {
 
     @Override
     public AttachVo selectById(Integer id) {
-        if(null != id){
+        if (null != id) {
             return attachDao.selectByPrimaryKey(id);
         }
         return null;
@@ -55,7 +55,7 @@ public class AttachServiceImpl implements IAttachService {
     @Override
     public void deleteById(Integer id) {
         if (null != id) {
-            attachDao.deleteByPrimaryKey( id);
+            attachDao.deleteByPrimaryKey(id);
         }
     }
 }

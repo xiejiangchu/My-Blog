@@ -2,10 +2,10 @@ package com.my.blog.website.dao;
 
 import com.my.blog.website.modal.Vo.RelationshipVoExample;
 import com.my.blog.website.modal.Vo.RelationshipVoKey;
-
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface RelationshipVoMapper {

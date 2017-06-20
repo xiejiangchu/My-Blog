@@ -2,13 +2,13 @@ package com.my.blog.website.utils;
 
 
 import com.github.pagehelper.PageInfo;
-import com.my.blog.website.service.ISiteService;
-import com.vdurmont.emoji.EmojiParser;
 import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.dto.MetaDto;
 import com.my.blog.website.dto.Types;
 import com.my.blog.website.modal.Vo.CommentVo;
 import com.my.blog.website.modal.Vo.ContentVo;
+import com.my.blog.website.service.ISiteService;
+import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -29,16 +29,14 @@ import java.util.regex.Pattern;
 @Component
 public final class Commons {
 
-    private static ISiteService siteService;
-
-    public static String THEME = "themes/default";
-
     private static final List EMPTY = new ArrayList(0);
+    private static final String[] ICONS = {"bg-ico-book", "bg-ico-game", "bg-ico-note", "bg-ico-chat", "bg-ico-code", "bg-ico-image", "bg-ico-web", "bg-ico-link", "bg-ico-design", "bg-ico-lock"};
+    public static String THEME = "themes/default";
+    private static ISiteService siteService;
 
     public static void setSiteService(ISiteService ss) {
         siteService = ss;
     }
-
 
     /**
      * 判断分页中是否有数据
@@ -164,7 +162,6 @@ public final class Commons {
     public static String permalink(ContentVo contents) {
         return permalink(contents.getCid(), contents.getSlug());
     }
-
 
     /**
      * 获取随机数
@@ -406,8 +403,6 @@ public final class Commons {
         }
         return "";
     }
-
-    private static final String[] ICONS = {"bg-ico-book", "bg-ico-game", "bg-ico-note", "bg-ico-chat", "bg-ico-code", "bg-ico-image", "bg-ico-web", "bg-ico-link", "bg-ico-design", "bg-ico-lock"};
 
     /**
      * 显示文章图标

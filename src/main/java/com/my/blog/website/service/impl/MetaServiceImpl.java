@@ -1,17 +1,17 @@
 package com.my.blog.website.service.impl;
 
 import com.my.blog.website.constant.WebConst;
+import com.my.blog.website.dao.MetaVoMapper;
 import com.my.blog.website.dto.MetaDto;
 import com.my.blog.website.dto.Types;
 import com.my.blog.website.exception.TipException;
+import com.my.blog.website.modal.Vo.ContentVo;
 import com.my.blog.website.modal.Vo.MetaVo;
+import com.my.blog.website.modal.Vo.MetaVoExample;
 import com.my.blog.website.modal.Vo.RelationshipVoKey;
+import com.my.blog.website.service.IContentService;
 import com.my.blog.website.service.IMetaService;
 import com.my.blog.website.service.IRelationshipService;
-import com.my.blog.website.dao.MetaVoMapper;
-import com.my.blog.website.modal.Vo.ContentVo;
-import com.my.blog.website.modal.Vo.MetaVoExample;
-import com.my.blog.website.service.IContentService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -127,7 +127,7 @@ public class MetaServiceImpl implements IMetaService {
                     metas.setMid(mid);
                     metaDao.updateByPrimaryKeySelective(metas);
 //                    更新原有文章的categories
-                    contentService.updateCategory(original.getName(),name);
+                    contentService.updateCategory(original.getName(), name);
                 } else {
                     metas.setType(type);
                     metaDao.insertSelective(metas);

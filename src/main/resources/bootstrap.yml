@@ -1,0 +1,25 @@
+spring:
+   application:
+      name: blog-server
+   profiles:
+      active: prod
+
+#server model
+#server:
+#   port: 9600
+#   session:
+#    timeout: 1800
+#   compression:
+#    enabled: true
+#   tomcat:
+#    max-threads: 2000
+#    uri-encoding: UTF-8
+#    background-processor-delay: 30
+#    basedir: "/home/log/${server.env}"
+#    accesslog:
+#      pattern: "%h %l %u %t %r %s %b %D"
+#      enabled: true
+
+multipart:
+  max-file-size: 50Mb
+  maxRequestSize: 50Mb

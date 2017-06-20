@@ -1,7 +1,6 @@
 package com.my.blog.website.controller.admin;
 
 import com.github.pagehelper.PageInfo;
-import com.vdurmont.emoji.EmojiParser;
 import com.my.blog.website.controller.BaseController;
 import com.my.blog.website.exception.TipException;
 import com.my.blog.website.modal.Bo.RestResponseBo;
@@ -10,6 +9,7 @@ import com.my.blog.website.modal.Vo.CommentVoExample;
 import com.my.blog.website.modal.Vo.UserVo;
 import com.my.blog.website.service.ICommentService;
 import com.my.blog.website.utils.TaleUtils;
+import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,13 +39,14 @@ public class CommentController extends BaseController {
         CommentVoExample commentVoExample = new CommentVoExample();
         commentVoExample.setOrderByClause("coid desc");
         commentVoExample.createCriteria().andAuthorIdNotEqualTo(users.getUid());
-        PageInfo<CommentVo> commentsPaginator = commentsService.getCommentsWithPage(commentVoExample,page, limit);
+        PageInfo<CommentVo> commentsPaginator = commentsService.getCommentsWithPage(commentVoExample, page, limit);
         request.setAttribute("comments", commentsPaginator);
         return "admin/comment_list";
     }
 
     /**
      * 删除一条评论
+     *
      * @param coid
      * @return
      */
@@ -55,7 +56,7 @@ public class CommentController extends BaseController {
     public RestResponseBo delete(@RequestParam Integer coid) {
         try {
             CommentVo comments = commentsService.getCommentById(coid);
-            if(null == comments){
+            if (null == comments) {
                 return RestResponseBo.fail("不存在该评论");
             }
             commentsService.delete(coid, comments.getCid());
@@ -96,15 +97,15 @@ public class CommentController extends BaseController {
     @ResponseBody
     @Transactional(rollbackFor = TipException.class)
     public RestResponseBo reply(@RequestParam Integer coid, @RequestParam String content, HttpServletRequest request) {
-        if(null == coid || StringUtils.isBlank(content)){
+        if (null == coid || StringUtils.isBlank(content)) {
             return RestResponseBo.fail("请输入完整后评论");
         }
 
-        if(content.length() > 2000){
+        if (content.length() > 2000) {
             return RestResponseBo.fail("请输入2000个字符以内的回复");
         }
         CommentVo c = commentsService.getCommentById(coid);
-        if(null == c){
+        if (null == c) {
             return RestResponseBo.fail("不存在该评论");
         }
         UserVo users = this.user(request);
